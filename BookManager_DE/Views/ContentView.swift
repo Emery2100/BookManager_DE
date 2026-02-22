@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @State var books: [Book] = getBooks()
     @State private var showAddSheet: Bool = false
-    @State var newBook: Book = Book(title: "", author: "", cover: "", summary: "")
+    @State var newBook = getNewBook()
     // Swift UI is declarative not imperative programming
     var body: some View {
         NavigationStack{
@@ -24,9 +24,10 @@ struct ContentView: View {
             .navigationBarItems(trailing: Button("Add Book", action:{
                 showAddSheet.toggle()
             }))
-            .sheet(isPresented:
-                    $showAddSheet){
-                books.append(newBook)
+            .sheet(isPresented: $showAddSheet){
+                if(!newBook.title.isEmpty){
+                    books.append(newBook)
+                }
                 newBook = getNewBook()
             }content:{
                 AddEditView(book: $newBook)

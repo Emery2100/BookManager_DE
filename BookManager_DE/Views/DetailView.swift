@@ -32,8 +32,24 @@ struct DetailView: View {
                             .foregroundColor(.secondary)
                     }
                 }
+            } //maybe?
+            HStack{
+                Spacer()
+                FavoriteToggle(isFavorite: $book.isFavorite)
             }
             Text(book.summary)
+            if(book.rating > 0 || !book.review.isEmpty){
+                VStack(alignment: .leading){
+                    HStack{
+                        Text("Review")
+                            .font(.title2)
+                            .bold()
+                        Spacer()
+                        StarRatingView(rating: book.rating)
+                    }
+                    Text(book.review)
+                }.padding(.vertical, 10)
+            }
         }
         .padding(.horizontal)
         
