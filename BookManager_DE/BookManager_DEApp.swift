@@ -15,6 +15,7 @@ struct BookManager_DEApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(modelContainer)
         }
     }
 
