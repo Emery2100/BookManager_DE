@@ -11,6 +11,7 @@ import SwiftData
 struct AddEditView: View {
     var book: PersistentBook?
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var modelContext
     
     @State private var title = ""
     @State private var author = ""
