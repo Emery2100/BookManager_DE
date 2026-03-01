@@ -6,13 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct BookManager_DEApp: App {
+    let modelContainer: ModelContainer
 
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
     }
+
+    init(){
+        do{
+            modelContainer = try ModelContainer(
+                for: PersistentBook.self
+        )
+    } catch {
+        fatalError("Failed to load container")
+    }
+}
 }
