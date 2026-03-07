@@ -92,3 +92,26 @@ struct UtilsTests {
     // Assignment: it filters isFavorite, genre and reading status
     
 }
+
+@Test("Test filterFavoriteBooks filter favorite books by genre and reading status")
+    func testFilterFavoriteBooksAllFilters(){
+        // Arrange
+        let books: [PersistentBook] = [
+            PersistentBook(title:"Book 1"),
+            PersistentBook(title:"Book 2", isFavorite: true),
+            PersistentBook(title:"Book 3", isFavorite: true, genre: .classic),
+            PersistentBook(title:"Book 4", isFavorite: true, genre: .classic, readingStatus: .planToRead),
+            PersistentBook(title:"Book 5", isFavorite: true, genre: .classic, readingStatus: .dropped)
+        ]
+        
+        // Act
+        let filteredBooks = filterFavoriteBooks(
+            books: books,
+            genre: .classic,
+            readingStatus: .planToRead
+        )
+        
+        // Assertion
+        #expect(filteredBooks.count == 1)
+        #expect(filteredBooks.first?.title == "Book 4")
+    }
