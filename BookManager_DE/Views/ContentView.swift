@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
 
-    
     @AppStorage(SETTINGS_THEME_KEY) private var theme: Theme = .system
     @AppStorage(SETTINGS_ACCENT_COLOR_KEY) private var accentColor: Color = .blue
 
@@ -17,20 +16,20 @@ struct ContentView: View {
         switch theme {
         case .system:
             return nil
-        case Theme.dark:
+        case .dark:
             return .dark
         case .light:
             return .light
         }
     }
-
+    
 // Swift UI is declarative not imperative programming
     var body: some View {
         TabView{
             ListView()
-            .tabItem {
-                Label("Books", systemImage: "books.vertical.fill")
-            }
+                .tabItem {
+                    Label("Books", systemImage: "books.vertical.fill")
+                }
             FavoritesView()
                 .tabItem {
                     Label("Favorites", systemImage: "heart.fill")
@@ -45,6 +44,7 @@ struct ContentView: View {
     }
 
 }
+
 
     #Preview {
         ContentView()

@@ -15,29 +15,40 @@ class PersistentBook {
     var author: String
     var coverData: Data?
     var summary: String
-    
-    //Added 2 new property
+    //Added 2 new properties 105-4
     var rating: Int
     var review: String
     
-    //add a new one 106-1
-    var isFavorite: Bool = false
+    //Add a new one 106-1
+    var isFavorite: Bool
     
-    // Add 2 new property
+    //Add 2 new properties
     var genre: Genre
     var readingStatus: ReadingStatus
+    
+    init(_ book: PersistentBook){
+        self.title = book.title
+        self.author = book.author
+        self.coverData = book.coverData
+        self.summary = book.summary
+        self.rating = book.rating
+        self.review = book.review
+        self.isFavorite = book.isFavorite
+        self.genre = book.genre
+        self.readingStatus = book.readingStatus
+    }
     
     init(
         title: String,
         author: String = "",
         coverData: Data? = nil,
         summary: String = "",
-        rating: Int,
-        review: String,
+        rating: Int = 0,
+        review: String = "",
         isFavorite: Bool = false,
         genre: Genre = .unknown,
-        readingStatus: ReadingStatus = .unknown
-    ) {
+        readingStatus: ReadingStatus = .unknown,
+    ){
         self.title = title
         self.author = author
         self.coverData = coverData
@@ -48,10 +59,12 @@ class PersistentBook {
         self.genre = genre
         self.readingStatus = readingStatus
     }
+    
+    //computed property
     var cover: UIImage {
         if self.coverData != nil {
             return UIImage(data: self.coverData!)!
-        }else {
+        } else{
             return UIImage(resource: .lotrFellowship)
         }
     }
